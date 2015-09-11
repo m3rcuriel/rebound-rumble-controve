@@ -4,7 +4,7 @@ import com.m3rcuriel.controve.retrievable.Retrievable;
 import com.m3rcuriel.controve.retrievable.StateHolder;
 
 public abstract class StateControllerBase<T extends CommandsBase, K extends RobotSetpointsBase>
-implements Retrievable {
+    implements Retrievable {
 
   protected Routine<T, K> currentRoutine = null;
   protected RobotSetpointsBase setpoints;
