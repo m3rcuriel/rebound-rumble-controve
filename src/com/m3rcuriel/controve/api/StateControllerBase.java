@@ -3,11 +3,10 @@ package com.m3rcuriel.controve.api;
 import com.m3rcuriel.controve.retrievable.Retrievable;
 import com.m3rcuriel.controve.retrievable.StateHolder;
 
-public abstract class StateControllerBase<T extends CommandsBase, K extends RobotSetpointsBase>
-    implements Retrievable {
+public abstract class StateControllerBase<T extends CommandsBase, K extends RobotSetpointsBase> {
 
   protected Routine<T, K> currentRoutine = null;
-  protected RobotSetpointsBase setpoints;
+  protected K setpoints;
 
   private void setNewRoutine(Routine<T, K> newRoutine) {
     boolean needsCancel = newRoutine != currentRoutine && currentRoutine != null;
@@ -26,15 +25,5 @@ public abstract class StateControllerBase<T extends CommandsBase, K extends Robo
     setNewRoutine(null);
   }
 
-  public abstract void update(CommandsBase commands);
-
-  @Override
-  public void getState(StateHolder states) {
-    states.put("mode", currentRoutine != null ? currentRoutine.getName() : "---");
-  }
-
-  @Override
-  public String getName() {
-    return "state controller";
-  }
+  public abstract void update(T commands);
 }
