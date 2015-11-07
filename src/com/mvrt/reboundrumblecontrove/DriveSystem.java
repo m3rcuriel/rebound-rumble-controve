@@ -1,7 +1,7 @@
 package com.mvrt.reboundrumblecontrove;
 
 import com.m3rcuriel.controve.controllers.util.DriveOutput;
-import com.mvrt.reboundrumblecontrove.subsystem.DriveBase;
+import com.mvrt.reboundrumblecontrove.subsystems.DriveBase;
 
 import edu.wpi.first.wpilibj.DriverStation;
 
