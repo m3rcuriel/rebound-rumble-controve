@@ -13,6 +13,11 @@ public class StateController extends StateControllerBase<Commands, RobotSetpoint
 
   private ManualRoutine manualRoutine = new ManualRoutine();
   private Routine<Commands, RobotSetpoints> currentRoutine = null;
+  
+  public StateController() {
+    setpoints = new RobotSetpoints();
+    setpoints.reset();
+  }
 
   private void setNewRoutine(Routine<Commands, RobotSetpoints> newRoutine) {
     boolean needsCancel = newRoutine != currentRoutine && currentRoutine != null;

@@ -13,7 +13,7 @@ public class Constants extends ConstantsBase {
   public static double kIntakeSpeed = 1.0;
 
   public static double kShooterKeySpeed = 4000; // rpm
-  public static double kShooterSpeedShift = 100; // delta rpm
+  public static double kShooterSpeedShift = 0.1; // delta rpm
 
   public static double kElevatorSpeed = 0.8;
 
@@ -27,8 +27,8 @@ public class Constants extends ConstantsBase {
   public static int kLeftDriveFront = 0;
   public static int kLeftDriveRear = 1;
 
-  public static int kIntake = 2;
-  public static int kElevator = 7;
+  public static int kIntake = 7;
+  public static int kElevator = 4;
   public static int kShooter = 3;
 
   public static int kDriverJoystick = 0;

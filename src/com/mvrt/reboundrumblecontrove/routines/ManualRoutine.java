@@ -39,7 +39,7 @@ public class ManualRoutine extends Routine<Commands, RobotSetpoints> {
         existing.shooterSpeed = Optional.of(Constants.kShooterKeySpeed);
       } else if (commands.shooterRequest == Commands.ShooterRequest.SHOOTER_DECR) {
         existing.shooterSpeed =
-            Optional.of(existing.shooterSpeed.orElse(0.0) + Constants.kShooterSpeedShift);
+            Optional.of(existing.shooterSpeed.orElse(0.0) - Constants.kShooterSpeedShift);
       } else if (commands.shooterRequest == Commands.ShooterRequest.SHOOTER_INCR) {
         existing.shooterSpeed =
             Optional.of(existing.shooterSpeed.orElse(0.0) + Constants.kShooterSpeedShift);
