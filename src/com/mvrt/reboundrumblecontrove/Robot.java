@@ -4,6 +4,7 @@ package com.mvrt.reboundrumblecontrove;
 import com.m3rcuriel.controve.controllers.util.DriveOutput;
 import com.m3rcuriel.controve.retrievable.SystemManager;
 import com.mvrt.reboundrumblecontrove.statemachine.StateController;
+import com.mvrt.reboundrumblecontrove.web.WebServer;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
@@ -29,6 +30,7 @@ public class Robot extends IterativeRobot {
   @Override
   public void robotInit() {
     SystemManager.getInstance().add(stateController);
+    WebServer.startServer();
   }
 
   @Override

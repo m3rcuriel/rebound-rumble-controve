@@ -14,17 +14,17 @@ public class OperatorInterface {
   }
 
   public Commands getCommands() {
-    if (driverJoystick.getRawButton(11)) {
+    if (driverJoystick.getRawButton(10)) {
       commands.elevatorRequest = Commands.ElevatorRequest.UP;
-    } else if (driverJoystick.getRawButton(12)) {
+    } else if (driverJoystick.getRawButton(11)) {
       commands.elevatorRequest = Commands.ElevatorRequest.DOWN;
     } else {
       commands.elevatorRequest = Commands.ElevatorRequest.NONE;
     }
 
-    if (driverJoystick.getRawButton(0)) {
+    if (driverJoystick.getRawButton(1)) {
       commands.shooterRequest = Commands.ShooterRequest.SHOOTER_KEY;
-    } else if (driverJoystick.getRawButton(1)) {
+    } else if (driverJoystick.getRawButton(2)) {
       commands.shooterRequest = Commands.ShooterRequest.OFF;
     } else if (driverJoystick.getRawButton(4)) {
       commands.shooterRequest = Commands.ShooterRequest.SHOOTER_INCR;
@@ -34,7 +34,7 @@ public class OperatorInterface {
       commands.shooterRequest = Commands.ShooterRequest.NONE;
     }
 
-    if (driverJoystick.getRawButton(7)) {
+    if (driverJoystick.getRawButton(6)) {
       commands.intakeRequest = Commands.IntakeRequest.IN;
     } else if (driverJoystick.getRawButton(8)) {
       commands.intakeRequest = Commands.IntakeRequest.OUT;

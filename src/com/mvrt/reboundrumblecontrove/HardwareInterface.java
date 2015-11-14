@@ -17,7 +17,7 @@ public class HardwareInterface {
   public static Intake kIntake = new Intake();
   public static Shooter kShooter = new Shooter();
 
-  public static AHRS kGyro = new AHRS(SPI.Port.kMXP);
+  //public static AHRS kGyro = new AHRS(SPI.Port.kMXP);
 
   public static Joystick kDriverJoystick = new Joystick(Constants.kDriverJoystick);
 }

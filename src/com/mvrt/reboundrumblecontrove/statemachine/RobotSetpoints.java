@@ -28,5 +28,6 @@ public class RobotSetpoints extends RobotSetpointsBase {
     intakeAction = IntakeAction.NONE;
     elevatorAction = ElevatorAction.NONE;
     shooterAction = ShooterAction.NONE;
+    shooterSpeed = Optional.empty();
   }
 }
