@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
 public class Robot extends IterativeRobot {
 
   private ScheduledExecutorService controlLooper = Executors.newScheduledThreadPool(4);
-  private ScheduledExecutorService slowLooper = Executors.newScheduledThreadPool(2);
+  private ScheduledExecutorService lightLooper = Executors.newScheduledThreadPool(2);
 
   private StateController stateController = new StateController();
   private OperatorInterface operatorInterface = new OperatorInterface();
@@ -26,11 +26,31 @@ public class Robot extends IterativeRobot {
   private Joystick driveJoystick = HardwareInterface.kDriverJoystick;
   private ScheduledFuture<?> shooterThread = null;
 
+  public enum RobotState {
+    DISABLED, AUTONOMOUS, TELEOP;
+  }
+
+  public static RobotState robotState = RobotState.DISABLED;
+
+  public static RobotState getState() {
+    return robotState;
+  }
+
+  public static void setState(RobotState state) {
+    robotState = state;
+  }
 
   @Override
   public void robotInit() {
     SystemManager.getInstance().add(stateController);
     WebServer.startServer();
+    lightLooper.scheduleAtFixedRate(new LEDController("10.1.15.16", 5803), 0, 10,
+        TimeUnit.MILLISECONDS);
+  }
+
+  @Override
+  public void autonomousInit() {
+    setState(RobotState.AUTONOMOUS);
   }
 
   @Override
@@ -40,6 +60,7 @@ public class Robot extends IterativeRobot {
 
   @Override
   public void teleopInit() {
+    setState(RobotState.TELEOP);
     shooterThread = controlLooper.scheduleWithFixedDelay(HardwareInterface.kShooter, 0, 20,
         TimeUnit.MILLISECONDS);
   }
@@ -60,6 +81,8 @@ public class Robot extends IterativeRobot {
 
   @Override
   public void disabledInit() {
+    setState(RobotState.DISABLED);
+
     cancelAll();
 
     HardwareInterface.kShooter.reset();
