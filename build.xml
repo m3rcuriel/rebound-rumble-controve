@@ -66,6 +66,10 @@
 	      <include name="**/*.jar" />
 	    </zipgroupfileset>
 	    </jar>
-	  </target>
+    </target>
+    
+    <target name="fast-deploy" depends="jar,get-target-ip,dependencies,deploy" description="Skips pre-compile clean to reduce deploy time. IF YOU CHANGE CONSTANTS, USE REGULAR DEPLOY">
+        <echo>Fast target completed</echo>
+    </target>
 	
 </project> 
