@@ -38,4 +38,8 @@ public class Constants extends ConstantsBase {
     return "~/constants.txt";
   }
 
+  static {
+    new Constants().loadFromFile();
+  }
+
 }
