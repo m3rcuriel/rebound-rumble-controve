@@ -6,6 +6,7 @@ import org.json.simple.parser.ParseException;
 
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.math.BigDecimal;
@@ -124,6 +125,26 @@ public abstract class ConstantsBase {
       e.printStackTrace();
     } catch (ParseException e) {
       e.printStackTrace();
+    }
+  }
+
+  public void saveToFile() {
+    File file = getFile();
+    if (file == null) {
+      return;
+    }
+    try {
+      JSONObject json = getJsonObjectFromFile();
+      FileWriter writer = new FileWriter(file);
+      for (String key : modifiedKeys.keySet()) {
+        Object value = getValueForConstant(key);
+        json.put(key, value);
+      }
+
+      writer.write(json.toJSONString());
+      writer.close();
+    } catch (IOException | ParseException e) {
+      e.printStackTrace(); // ew
     }
   }
 
