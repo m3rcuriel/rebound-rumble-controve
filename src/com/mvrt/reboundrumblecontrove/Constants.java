@@ -1,6 +1,6 @@
 package com.mvrt.reboundrumblecontrove;
 
-import com.mvrt.lib.ConstantsBase;
+import com.m3rcuriel.controve.api.ConstantsBase;
 
 public class Constants extends ConstantsBase {
 
