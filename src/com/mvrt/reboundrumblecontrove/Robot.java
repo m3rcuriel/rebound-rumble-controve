@@ -43,7 +43,7 @@ public class Robot extends IterativeRobot {
   public void robotInit() {
     SystemManager.getInstance().add(stateController);
     WebServer.startServer();
-    lightLooper.scheduleAtFixedRate(new LEDController("10.1.15.16", 5803), 0, 10,
+    lightLooper.scheduleAtFixedRate(new LedController("10.1.15.16", 5803), 0, 10,
         TimeUnit.MILLISECONDS);
   }
 
