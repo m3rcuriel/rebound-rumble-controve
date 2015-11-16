@@ -67,6 +67,37 @@
 	    </zipgroupfileset>
 	    </jar>
     </target>
+
+    <target name="deploy" depends="clean,jar,get-target-ip,dependencies" description="Deploy the jar and start the program running.">
+        <echo>[athena-deploy] Copying code over.</echo>
+        <scp file="${dist.jar}" todir="${username}@${target}:${deploy.dir}" password="${password}" trust="true"/>
+
+        <sshexec host="${target}"
+                username="admin"
+                password="${password}"
+                trust="true"
+                failonerror="false"
+                command="killall netconsole-host"/>
+        <scp file="${wpilib.ant.dir}/netconsole-host" todir="admin@${target}:/usr/local/frc/bin" password="${password}" trust="true"/>
+
+        <scp file="${wpilib.ant.dir}/robotCommand" todir="${username}@${target}:${command.dir}" password="${password}" trust="true"/>
+
+        <scp file="LED.py" todir="mvrt@10.1.15.16:~" password="FIRSTRobotics115" trust="true"/>
+        <sshexec host="10.1.15.16"
+                username="mvrt"
+                password="FIRSTRobotics115"
+                trust="true"
+                failonerror="false"
+                command="python2 ~/LED.py &amp;"/>
+
+        <echo>[athena-deploy] Starting program.</echo>
+        <sshexec host="${target}"
+        username="${username}"
+        password="${password}"
+        trust="true"
+        command="${deploy.kill.command};"/>
+
+    </target>
     
     <target name="fast-deploy" depends="jar,get-target-ip,dependencies,deploy" description="Skips pre-compile clean to reduce deploy time. IF YOU CHANGE CONSTANTS, USE REGULAR DEPLOY">
         <echo>Fast target completed</echo>
