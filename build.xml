@@ -5,6 +5,12 @@
     <property file="build.properties"/>
     
     <taskdef resource="com/puppycrawl/tools/checkstyle/ant/checkstyle-ant-task.properties" classpath="lib/checkstyle-6.10-all.jar"/>
+
+    <path id="junit.class.path">
+        <pathelement location="${build.dir}"/>
+        <pathelement location="lib/junit.jar"/>
+        <pathelement location="lib/hamcrest-core-1.3.jar"/>
+    </path>
     
     <target name="checkstyle">
         <checkstyle config="google_checks.xml">
@@ -21,6 +27,18 @@
             includeAntRuntime="no"
             includeJavaRuntime="no"
             classpath="${classpath}"
+            target="1.8"
+            source="1.8"
+            debug="true">
+        </javac>
+
+        <echo>[controve-compile] Compiling test with classpath=${classpath}:${build.dir}:lib/junit.jar to ${build.dir}/test</echo>
+        <mkdir dir="${build.dir}/test"/>
+        <javac srcdir="test"
+            destdir="${build.dir}/test"
+            includeAntRuntime="no"
+            includeJavaRuntime="no"
+            classpath="${classpath}:${build.dir}:lib/junit.jar"
             target="1.8"
             source="1.8"
             debug="true">
@@ -46,6 +64,28 @@
                 <include name="**/*.jar"/>
             </zipgroupfileset>
         </jar>
+    </target>
+
+    <target name="test" depends="compile"> 
+        <mkdir dir="logs/reports"/>
+
+        <junit printsummary="yes" haltonfailure="yes">
+            <classpath refid="junit.class.path"/>
+            <classpath>
+                <pathelement location="build/test"/>
+                <pathelement location="${classpath}"/>
+                <pathelement location="lib/json-simple-1.1.1.jar"/>
+            </classpath>
+
+            <formatter type="plain"/>
+            <formatter type="xml"/>
+
+            <batchtest fork="yes" todir="logs/reports">
+                <fileset dir="test">
+                    <include name="**/*Test.java"/>
+                </fileset>
+            </batchtest>
+        </junit>
     </target>
 
 </project>
