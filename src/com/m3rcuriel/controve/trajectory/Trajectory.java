@@ -3,7 +3,7 @@ package com.m3rcuriel.controve.trajectory;
 // TODO this class should extend (nonexistant) DynamicTrajectory class (or similar)
 public class Trajectory {
   public static class Segment implements Cloneable {
-    public double pos,vel, acc, jerk, dt, x, y;
+    public double pos, vel, acc, jerk, dt, x, y;
 
     public Segment() {}
 

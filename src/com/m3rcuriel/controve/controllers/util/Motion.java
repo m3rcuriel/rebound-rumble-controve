@@ -31,6 +31,7 @@ public class Motion {
 
   /**
    * Get left distance of the motion.
+   * 
    * @return the leftDistance
    */
   public double getLeftDistance() {
@@ -39,6 +40,7 @@ public class Motion {
 
   /**
    * Get right distance of the motion.
+   * 
    * @return the rightDistance
    */
   public double getRightDistance() {
@@ -47,6 +49,7 @@ public class Motion {
 
   /**
    * Get left velocity of the motion.
+   * 
    * @return the leftVelocity
    */
   public double getLeftVelocity() {
@@ -55,6 +58,7 @@ public class Motion {
 
   /**
    * Get right velocity of the motion.
+   * 
    * @return the rightVelocity
    */
   public double getRightVelocity() {
@@ -63,6 +67,7 @@ public class Motion {
 
   /**
    * Get the heading of the motion.
+   * 
    * @return the heading
    */
   public double getHeading() {
@@ -71,6 +76,7 @@ public class Motion {
 
   /**
    * Get the rate in change of angle of the motion.
+   * 
    * @return the headingVelocity
    */
   public double getHeadingVelocity() {

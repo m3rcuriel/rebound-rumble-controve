@@ -7,20 +7,20 @@ import java.io.IOException;
 
 import org.junit.Test;
 
-import com.m3rcuriel.controve.util.CSVWriter;
+import com.m3rcuriel.controve.util.CsvWriter;
 
 public class TrajectoryFollowerTest {
 
 	@Test
 	public void test() {
 		int netcycle = 0;
-		CSVWriter writer = null;
+		CsvWriter writer = null;
 		try {
 			File dir = new File("logs/");
 			if(!dir.exists()) {
 				dir.mkdirs();
 			}
-			writer = new CSVWriter(new File("logs/traj.log.csv"), "Time", "Position", "Velocity", "Acceleration", "Command");
+			writer = new CsvWriter(new File("logs/traj.log.csv"), "Time", "Position", "Velocity", "Acceleration", "Command");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

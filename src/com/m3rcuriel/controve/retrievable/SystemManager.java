@@ -86,8 +86,8 @@ public class SystemManager {
 
     updateAllStates();
 
-    retrievables.forEach((key, rh) -> rh.getStateHolder().forEach(
-        (entry) -> states.put(key + "." + entry.getKey(), entry.getValue())));
+    retrievables.forEach((key, rh) -> rh.getStateHolder()
+        .forEach((entry) -> states.put(key + "." + entry.getKey(), entry.getValue())));
     return states;
   }
 

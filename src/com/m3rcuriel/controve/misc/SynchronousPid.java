@@ -5,8 +5,9 @@ import edu.wpi.first.wpilibj.util.BoundaryException;
 /**
  * Class implements a PID Control Loop.
  *
- * <p>Does all computation synchronously (i.e. the calculate() function must be called by the user
- * from his own thread)
+ * <p>
+ * Does all computation synchronously (i.e. the calculate() function must be called by the user from
+ * his own thread)
  */
 public class SynchronousPid {
   private double kP; // factor for "proportional" control
