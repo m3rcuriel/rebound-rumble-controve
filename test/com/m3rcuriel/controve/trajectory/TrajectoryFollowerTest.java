@@ -16,7 +16,7 @@ public class TrajectoryFollowerTest {
 		int netcycle = 0;
 		CSVWriter writer = null;
 		try {
-			writer = new CSVWriter(new File("traj.log.csv"), "Time", "Position", "Velocity", "Acceleration", "Command");
+			writer = new CSVWriter(new File("logs/traj.log.csv"), "Time", "Position", "Velocity", "Acceleration", "Command");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

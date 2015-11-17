@@ -1,0 +1,8 @@
+set terminal wxt size 1280,720 enhanced font 'Verdana,10' persist
+set autoscale
+set key outside
+set datafile separator ','
+plot '../../test/traj.log.csv' using 1:2 title 'Position' with points, \
+'../../test/traj.log.csv' using 1:3 title 'Velocity' with dots, \
+'../../test/traj.log.csv' using 1:4 title 'Acceleration' with dots, \
+'../../test/traj.log.csv' using 1:5 title 'Command' with dots
