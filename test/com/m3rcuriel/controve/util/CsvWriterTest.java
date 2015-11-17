@@ -9,12 +9,12 @@ import java.io.IOException;
 
 import org.junit.Test;
 
-public class CSVWriterTest {
+public class CsvWriterTest {
 
 	@Test
 	public void testWriter() throws IOException {
 		File f = new File("test.txt");
-		CSVWriter writer = new CSVWriter(f, "head1", "head2");
+		CsvWriter writer = new CsvWriter(f, "head1", "head2");
 		BufferedReader fr = new BufferedReader(new FileReader(f));
 		assertEquals(fr.readLine(), "head1,head2");
 		writer.writeLine(0, 1);
