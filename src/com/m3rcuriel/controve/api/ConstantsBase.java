@@ -78,7 +78,7 @@ public abstract class ConstantsBase {
             modifiedKeys.put(name, true);
           }
         } catch (IllegalArgumentException | IllegalAccessException e) {
-          e.printStackTrace();
+          System.err.println("Could not set field: " + name);
         }
       }
     } catch (NoSuchFieldException e) {
