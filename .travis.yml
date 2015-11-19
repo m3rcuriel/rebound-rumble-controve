@@ -1,7 +1,4 @@
 language: java
 jdk: oraclejdk8
 
-script: ant compile
-
-before_install:
-    sh travis-install.sh
+script: gradle test
