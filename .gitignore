@@ -1,3 +1,7 @@
 build/
 bin/
 dist/
+
+.gradle/
+logs/
+build/
