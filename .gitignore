@@ -4,3 +4,7 @@ dist/
 logs/
 
 .gradle/
+
+.idea/
+
+*.iml

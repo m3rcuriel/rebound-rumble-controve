@@ -1,7 +1,6 @@
 package com.m3rcuriel.controve.misc;
 
 import com.m3rcuriel.controve.controllers.util.DriveOutput;
-
 import edu.wpi.first.wpilibj.DriverStation;
 
 public class DriveSystem {

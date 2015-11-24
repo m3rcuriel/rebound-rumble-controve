@@ -91,8 +91,8 @@ public abstract class ConstantsBase {
   public Object getValueForConstant(String name) {
     Field[] declaredFields = this.getClass().getDeclaredFields();
     for (Field field : declaredFields) {
-      if (java.lang.reflect.Modifier.isStatic(field.getModifiers())
-          && field.getName().equals(name)) {
+      if (java.lang.reflect.Modifier.isStatic(field.getModifiers()) && field.getName()
+          .equals(name)) {
         try {
           return field.get(this);
         } catch (IllegalArgumentException | IllegalAccessException e) {

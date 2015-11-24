@@ -1,5 +1,7 @@
 package com.m3rcuriel.controve.trajectory;
 
+import edu.wpi.first.wpilibj.Timer;
+
 // TODO should extend more general Follower or TrajectoryFollower
 public class TrajectoryFollower {
 
@@ -14,6 +16,7 @@ public class TrajectoryFollower {
     }
   }
 
+
   public static class TrajectorySetpoint {
     public double position;
     public double velocity;
@@ -25,6 +28,7 @@ public class TrajectoryFollower {
           + acceleration;
     }
   }
+
 
   private double kP, kI, kD, kV, kA, lastError, errorSum;
   private double maxOutput = 1.0, minOutput = -1.0;
@@ -67,11 +71,18 @@ public class TrajectoryFollower {
 
   public double calculate(double position, double velocity) {
     double dt = config.dt;
-    /*
-     * Add if inaccurate if (!reset) { double now = Timer.getFPGATimestamp(); dt = now -
-     * lastTimestamp; lastTimestamp = now; } else { lastTimestamp = Timer.getFPGATimestamp(); }
-     */
+    if (!reset) {
+      double now = Timer.getFPGATimestamp();
+      dt = now - lastTimestamp;
+      lastTimestamp = now;
+    } else {
+      lastTimestamp = Timer.getFPGATimestamp();
+    }
 
+    return calculate(position, velocity, dt);
+  }
+
+  public double calculate(double position, double velocity, double dt) {
     if (isFinishedTrajectory()) {
       currentState.position = goalPosition;
       currentState.velocity = 0;
@@ -144,8 +155,9 @@ public class TrajectoryFollower {
       lastError = error;
       errorSum = error;
     }
-    double output = kP * error + kD * ((error - lastError) / dt - currentState.velocity)
-        + (kV * currentState.velocity + kA * currentState.acceleration);
+    System.out.println(error);
+    double output = kP * error + kD * ((error - lastError) / dt - currentState.velocity) + (
+        kV * currentState.velocity + kA * currentState.acceleration);
     if (output < maxOutput && output > minOutput) {
       // if the output is already maxed don't increment integral term
       errorSum += error * dt;

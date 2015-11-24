@@ -5,7 +5,8 @@ public class Trajectory {
   public static class Segment implements Cloneable {
     public double pos, vel, acc, jerk, dt, x, y;
 
-    public Segment() {}
+    public Segment() {
+    }
 
     public Segment(double pos, double vel, double acc, double jerk, double dt, double x, double y) {
       this.pos = pos;
@@ -32,6 +33,7 @@ public class Trajectory {
       return new Segment(this);
     }
   }
+
 
   Segment[] trajSegments = null;
 

@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.util.BoundaryException;
 
 /**
  * Class implements a PID Control Loop.
- *
+ * <p>
  * <p>
  * Does all computation synchronously (i.e. the calculate() function must be called by the user from
  * his own thread)
@@ -28,7 +28,8 @@ public class SynchronousPid {
   private double result = 0.0;
   private double previousInput = Double.NaN;
 
-  public SynchronousPid() {}
+  public SynchronousPid() {
+  }
 
   /**
    * Allocate a PID object with the given constants for P, I, D.

@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 public class SystemManager {
   private static SystemManager inst = null;
 
+
   private class RetrievableHolder {
     Retrievable machine;
     StateHolder stateHolder = new StateHolder();
@@ -25,6 +26,7 @@ public class SystemManager {
       machine.getState(stateHolder);
     }
   }
+
 
   private HashMap<String, RetrievableHolder> retrievables;
 
