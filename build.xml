@@ -68,6 +68,16 @@
 	    </jar>
     </target>
 
+    <target name="buildsim" depends="jar">
+        <delete dir="tmp"/>
+        <mkdir dir="tmp"/>
+        <mkdir dir="tmp/classes"/>
+        <unzip src="dist/FRCUserProgram.jar" dest="tmp/classes"/>
+        <mkdir dir="tmp/fakewpilib"/>
+        <unzip src="lib/FakeWPILib.jar" dest="tmp/fakewpilib"/>
+
+    </target>
+
     <target name="deploy" depends="clean,jar,get-target-ip,dependencies" description="Deploy the jar and start the program running.">
         <echo>[athena-deploy] Copying code over.</echo>
         <scp file="${dist.jar}" todir="${username}@${target}:${deploy.dir}" password="${password}" trust="true"/>
