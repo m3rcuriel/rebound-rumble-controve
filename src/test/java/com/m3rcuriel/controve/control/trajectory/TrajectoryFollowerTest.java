@@ -1,12 +1,11 @@
 package com.m3rcuriel.controve.control.trajectory;
 
+import static org.junit.Assert.assertEquals;
 import com.m3rcuriel.controve.util.CsvWriter;
 import org.junit.Test;
 
 import java.io.File;
 import java.io.IOException;
-
-import static org.junit.Assert.assertEquals;
 
 public class TrajectoryFollowerTest {
 
@@ -46,7 +45,7 @@ public class TrajectoryFollowerTest {
       netcycle++;
     }
 
-    follower.calculate(setpoint.position, setpoint.velocity, config.dt);
+    follower.calculate(setpoint.position, setpoint.velocity);
     setpoint = follower.getCurrentSetpoint();
     System.out.println("Took " + cycles + " cycles; " + cycles * config.dt + " seconds");
     assertEquals(setpoint.position, 100.0, 1E-3);
@@ -59,7 +58,7 @@ public class TrajectoryFollowerTest {
       cycles++;
       netcycle++;
     }
-    follower.calculate(setpoint.position, setpoint.velocity, config.dt);
+    follower.calculate(setpoint.position, setpoint.velocity);
     setpoint = follower.getCurrentSetpoint();
     System.out.println("Took " + cycles + " cycles; " + cycles * config.dt + " seconds");
     assertEquals(setpoint.position, 0.0, 1E-3);
@@ -75,7 +74,7 @@ public class TrajectoryFollowerTest {
       cycles++;
       netcycle++;
     }
-    follower.calculate(setpoint.position, setpoint.velocity, config.dt);
+    follower.calculate(setpoint.position, setpoint.velocity);
     setpoint = follower.getCurrentSetpoint();
     System.out.println("Took " + cycles + " cycles; " + cycles * config.dt + " seconds");
     assertEquals(setpoint.position, 2.0, 1E-3);
@@ -85,7 +84,7 @@ public class TrajectoryFollowerTest {
 
   private void loop(TrajectoryFollower follower, TrajectoryFollower.TrajectorySetpoint setpoint,
       double dt, double netcycle) {
-    double command = follower.calculate(setpoint.position, setpoint.velocity, dt);
+    double command = follower.calculate(setpoint.position, setpoint.velocity);
     setpoint = follower.getCurrentSetpoint();
     System.out.println("Result: " + setpoint + "; Command: " + command);
     writer.writeLine(netcycle * dt, setpoint.position, setpoint.velocity, setpoint.acceleration,
