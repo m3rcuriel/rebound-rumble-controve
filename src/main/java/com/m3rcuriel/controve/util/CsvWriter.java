@@ -4,10 +4,22 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * Simple writer for logging to CSV files.
+ *
+ * @author Lee Mracek
+ */
 public class CsvWriter extends FileWriter {
 
   int index;
 
+  /**
+   * Construct a new CsvWriter from a file and a set of header data.
+   *
+   * @param file the file for output
+   * @param headerData the header to add to the file (for input into Excel, etc)
+   * @throws IOException if the file does not exist or is not reachable
+   */
   public CsvWriter(File file, String... headerData) throws IOException {
     super(file);
     if (headerData.length != 0) {
@@ -23,6 +35,12 @@ public class CsvWriter extends FileWriter {
     }
   }
 
+  /**
+   * Write a single line of data with the same length as the header data. Each number is comma
+   * delimited.
+   *
+   * @param data the numerical data to write
+   */
   public void writeLine(Number... data) {
     if (data.length != 0 && (data.length == index || index == -1)) {
       StringBuilder head = new StringBuilder();

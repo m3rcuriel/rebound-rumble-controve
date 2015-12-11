@@ -1,9 +1,9 @@
 package com.m3rcuriel.controve.api;
 
-import com.m3rcuriel.controve.retrievable.Retrievable;
-import com.m3rcuriel.controve.retrievable.SystemManager;
+import com.m3rcuriel.controve.Executable;
+import com.m3rcuriel.controve.SystemManager;
 
-public abstract class Subsystem implements Retrievable {
+public abstract class Subsystem implements Executable, Retrievable {
 
   protected String name;
 

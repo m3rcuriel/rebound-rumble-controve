@@ -3,7 +3,6 @@ package com.m3rcuriel.controve.api;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-
 import com.m3rcuriel.controve.api.ConstantsBase.Constant;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
