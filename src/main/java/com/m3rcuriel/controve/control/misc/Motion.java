@@ -1,14 +1,30 @@
 package com.m3rcuriel.controve.control.misc;
 
+/**
+ * This class acts as a complete represenation of a robot's physical state as can be measured by
+ * encoders and gyros.
+ *
+ * @author Lee Mracek
+ */
 public class Motion {
 
-  public double leftDistance;
-  public double rightDistance;
-  public double leftVelocity;
-  public double rightVelocity;
-  public double heading;
-  public double headingVelocity;
+  private double leftDistance;
+  private double rightDistance;
+  private double leftVelocity;
+  private double rightVelocity;
+  private double heading;
+  private double headingVelocity;
 
+  /**
+   * Initialize a Motion with the given values.
+   *
+   * @param leftDistance the left encoder distance
+   * @param rightDistance the right encoder distance
+   * @param leftVelocity the left encoder rate
+   * @param rightVelocity the right encoder rate
+   * @param heading the heading of the robot
+   * @param headingVelocity the angular velocity of the robot
+   */
   public Motion(double leftDistance, double rightDistance, double leftVelocity,
       double rightVelocity, double heading, double headingVelocity) {
     this.leftDistance = leftDistance;
@@ -19,6 +35,16 @@ public class Motion {
     this.headingVelocity = headingVelocity;
   }
 
+  /**
+   * Reset a Motion to the given values.
+   *
+   * @param leftDistance the left encoder distance
+   * @param rightDistance the right encoder distance
+   * @param leftVelocity the left encoder rate
+   * @param rightVelocity the right encoder rate
+   * @param heading the heading of the robot
+   * @param headingVelocity the angular velocity of the robot
+   */
   public void reset(double leftDistance, double rightDistance, double leftVelocity,
       double rightVelocity, double heading, double headingVelocity) {
     this.leftDistance = leftDistance;

@@ -2,6 +2,11 @@ package com.m3rcuriel.controve.control.statespace;
 
 import com.m3rcuriel.controve.util.DoubleMatrix;
 
+/**
+ * A container for the coefficients of a State Feedback Plant.
+ *
+ * @author Lee Mracek
+ */
 public final class StateFeedbackPlantCoefficients {
   private final DoubleMatrix matrixA;
   private final DoubleMatrix matrixB;
@@ -10,6 +15,21 @@ public final class StateFeedbackPlantCoefficients {
   private final DoubleMatrix uMin;
   private final DoubleMatrix uMax;
 
+  /**
+   * Construct a new object containing the relevant coefficients.
+   *
+   * Matrices are cloned to prevent pointer problems.
+   *
+   * @param numberOfStates the number of system states.
+   * @param numberOfInputs the number of system inputs.
+   * @param numberOfOutputs the number of system outputs.
+   * @param matrixA the A matrix
+   * @param matrixB the B matrix
+   * @param matrixC the C matrix
+   * @param matrixD the D matrix
+   * @param uMin the minimum possible input matrix
+   * @param uMax the maximum possible input matrix
+   */
   public StateFeedbackPlantCoefficients(int numberOfStates, int numberOfInputs, int numberOfOutputs,
       DoubleMatrix matrixA, DoubleMatrix matrixB, DoubleMatrix matrixC, DoubleMatrix matrixD,
       DoubleMatrix uMin, DoubleMatrix uMax) {
@@ -58,26 +78,50 @@ public final class StateFeedbackPlantCoefficients {
     this.uMax = uMax.clone();
   }
 
+  /**
+   * Retrieve the A matrix.
+   * @return the A matrix
+   */
   public DoubleMatrix getMatrixA() {
     return matrixA;
   }
 
+  /**
+   * Retrieve the B matrix.
+   * @return the B matrix
+   */
   public DoubleMatrix getMatrixB() {
     return matrixB;
   }
 
+  /**
+   * Retrieve the C matrix.
+   * @return the C matrix
+   */
   public DoubleMatrix getMatrixC() {
     return matrixC;
   }
 
+  /**
+   * Retrieve the D matrix.
+   * @return the D matrix
+   */
   public DoubleMatrix getMatrixD() {
     return matrixD;
   }
 
+  /**
+   * Get the minimum possible U matrix
+   * @return the UMin matrix
+   */
   public DoubleMatrix getUMin() {
     return uMin;
   }
 
+  /**
+   * Gets the maximum possible U matrix.
+   * @return the maximum U matrix.
+   */
   public DoubleMatrix getUMax() {
     return uMax;
   }
