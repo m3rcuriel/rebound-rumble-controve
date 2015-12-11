@@ -10,6 +10,7 @@ import com.m3rcuriel.controve.util.DoubleMatrix;
 public class StateFeedbackController {
   private final DoubleMatrix matrixL;
   private final DoubleMatrix matrixK;
+  private final StateFeedbackPlantCoefficients coefficients;
 
   /**
    * Initializes a new StateFeedbackController wth the given control matrices.
@@ -18,9 +19,10 @@ public class StateFeedbackController {
    * @param numberOfOutputs the number of outputs in the output matrix
    * @param matrixL the L matrix for the observer
    * @param matrixK the K matrix for the controller
+   * @param coefficients the associated {@link StateFeedbackPlantCoefficients}
    */
   public StateFeedbackController(int numberOfStates, int numberOfInputs, int numberOfOutputs,
-      DoubleMatrix matrixL, DoubleMatrix matrixK) {
+      DoubleMatrix matrixL, DoubleMatrix matrixK, StateFeedbackPlantCoefficients coefficients) {
     if (matrixL.getWidth() != numberOfOutputs) {
       throw new IllegalArgumentException("The width of L must be the number of outputs");
     }
@@ -36,6 +38,7 @@ public class StateFeedbackController {
 
     this.matrixL = matrixL;
     this.matrixK = matrixK;
+    this.coefficients = coefficients;
   }
 
   /**
@@ -54,5 +57,14 @@ public class StateFeedbackController {
    */
   public DoubleMatrix getMatrixK() {
     return matrixK;
+  }
+
+  /**
+   * Retrieve the coefficients for the corresponding controller plant.
+   *
+   * @return the {@link StateFeedbackPlantCoefficients} associated with the controller
+   */
+  public StateFeedbackPlantCoefficients coefficients() {
+    return coefficients;
   }
 }
