@@ -6,5 +6,10 @@ package com.m3rcuriel.controve.components;
  * @author Lee Mracek
  */
 public interface Switch {
+  /**
+   * Determine whether or not the Switch is presently triggered.
+   *
+   * @return true if the switch is triggered
+   */
   public boolean isTriggered();
 }

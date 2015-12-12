@@ -3,20 +3,43 @@ package com.m3rcuriel.controve.components;
 import java.util.function.DoubleSupplier;
 
 /**
- * Created by lee on 12/10/15.
+ * The abstract representation of a sensor measuring distance. Can be zeroed.
+ *
+ * @author Lee Mracek
  */
-public interface DistanceSensor extends Zeroable {
+public interface DistanceSensor extends ReZeroable {
+  /**
+   * Gets the current distance in inches.
+   *
+   * @return the current distance in inches
+   */
   public double getDistanceInInches();
 
+  /**
+   * Gets the current distance in feet.
+   *
+   * @return the current distance in feet
+   */
   public default double getDistanceInFeet() {
     return getDistanceInInches() / 12.0;
   }
 
+  /**
+   * Zeroes the DistanceSensor.
+   *
+   * @return the newly zeroed DistanceSensor
+   */
   @Override
   public default DistanceSensor zero() {
     return this;
   }
 
+  /**
+   * Create a new DistanceSensor based on a {@link DoubleSupplier} representing the sensor.
+   *
+   * @param distanceSupplier the supplier function representing the distance
+   * @return the new DistanceSensor
+   */
   public static DistanceSensor create(DoubleSupplier distanceSupplier) {
     return new DistanceSensor() {
       private double zero = 0;
@@ -34,6 +57,12 @@ public interface DistanceSensor extends Zeroable {
     };
   }
 
+  /**
+   * Inverts a DistanceSensor.
+   *
+   * @param sensor the DistanceSensor to invert
+   * @return the inverted DistanceSensor
+   */
   public static DistanceSensor invert(DistanceSensor sensor) {
     return new DistanceSensor() {
       @Override
