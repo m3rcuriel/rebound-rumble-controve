@@ -7,6 +7,7 @@ package com.m3rcuriel.controve.components;
  * @author Lee Mracek
  */
 public interface ReZeroable {
+
   /**
    * Establish a new zero and return the newly zeroed object.
    *
