@@ -4,7 +4,7 @@ package com.m3rcuriel.controve.components;
  * An abstract interface representing an object which can have a new zero point. The newly zeroed
  * object is returned.
  *
- * @uathor Lee Mracek
+ * @author Lee Mracek
  */
 public interface ReZeroable {
   /**
