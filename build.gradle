@@ -21,4 +21,8 @@ checkstyle {
     ignoreFailures = true
 }
 
+javadoc {
+    destinationDir = file('docs')
+}
+
 defaultTasks 'compileJava', 'check'
