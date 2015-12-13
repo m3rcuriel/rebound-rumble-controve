@@ -1,5 +1,6 @@
 package com.m3rcuriel.controve;
 
+import com.m3rcuriel.controve.api.StateManager;
 import com.m3rcuriel.controve.components.Clock;
 import com.m3rcuriel.controve.util.Metronome;
 
@@ -192,23 +193,28 @@ public class Controve {
   private final AtomicBoolean started = new AtomicBoolean(false);
   private final LongConsumer excessiveExecutionHandler;
   private final AtomicLong conductorDelayCounter = new AtomicLong();
+  private final StateManager stateManager;
 
   private Controve(Configurator config, Controve pastInstance) {
     boolean start = false;
+    StateManager.initialize();
+    stateManager = StateManager.instance();
     if (pastInstance != null) {
       start = pastInstance.started.get();
       pastInstance.doShutdown();
       executables = pastInstance.executables;
+      executables.unregister(stateManager);
       excessiveExecutionHandler = pastInstance.excessiveExecutionHandler;
     } else {
       executables = new Executables();
-      excessiveExecutionHandler = CONFIG.excessiveExecutorDelayHandler;
+      excessiveExecutionHandler = config.excessiveExecutorDelayHandler;
     }
 
+    executables.register(stateManager);
     clock = config.timeSystemSupplier.get();
-    metronome = Metronome.metronome(CONFIG.executionPeriodInNanos, TimeUnit.NANOSECONDS, clock);
+    metronome = Metronome.metronome(config.executionPeriodInNanos, TimeUnit.NANOSECONDS, clock);
     conductor = new Conductor("Controve Conductor", executables, clock, metronome,
-        monitorDelay(CONFIG.executionPeriodInNanos, TimeUnit.NANOSECONDS));
+        monitorDelay(config.executionPeriodInNanos, TimeUnit.NANOSECONDS));
     if (pastInstance != null && start) {
       doStart();
     }

@@ -1,21 +1,22 @@
 package com.m3rcuriel.controve.api;
 
-import com.m3rcuriel.controve.Executable;
-import com.m3rcuriel.controve.SystemManager;
+import java.util.HashMap;
+import java.util.function.Supplier;
 
-public abstract class Subsystem implements Executable, Retrievable {
+/**
+ * @author Lee Mracek
+ */
+public abstract class Subsystem implements StateHolder {
+  private String name;
 
-  protected String name;
+  protected HashMap<String, Supplier> states = new HashMap<>();
 
   public Subsystem(String name) {
     this.name = name;
-    SystemManager.getInstance().add(this);
+    StateManager.add(this);
   }
 
-  @Override
-  public String getName() {
-    return name;
-  }
+  public abstract void updateState(StateManager states);
 
   public abstract void reloadConstants();
 }
