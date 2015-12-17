@@ -31,10 +31,10 @@ import java.util.function.DoubleFunction;
 
 /**
  * Contains factory methods to create implementations corresponding to physical hardware.
- * <p>
+ * <br>
  * Subsystems, etc should not know how to obtain compoonents. Instead, the components should be
  * passed in via constructors; the references to components can be immutable and final.
- * <p>
+ * <br>
  * This means subsystems can be tested off-robot without hardware via mock components and pass them
  * into the subsystem constructors.
  *
@@ -104,63 +104,6 @@ public class Hardware {
       IN_WINDOW, AVERAGED;
     }
 
-
-    public static final class AngleSensors {
-      // TODO write Gyro component
-
-      public static AngleSensor encoder(int aChannel, int bChannel, double distancePerPulse) {
-        Encoder encoder = new Encoder(aChannel, bChannel);
-        encoder.setDistancePerPulse(distancePerPulse);
-        return AngleSensor.create(encoder::getDistance);
-      }
-
-      public static AngleSensor potentiometer(int channel, double fullVoltageRangeToDegrees) {
-        return potentiometer(channel, fullVoltageRangeToDegrees, 0.0);
-      }
-
-      public static AngleSensor potentiometer(int channel, double fullVoltageRangeToDegrees,
-          double offsetInDegrees) {
-        AnalogPotentiometer pot =
-            new AnalogPotentiometer(channel, fullVoltageRangeToDegrees, offsetInDegrees);
-        return AngleSensor.create(pot::get);
-      }
-    }
-
-
-    public static final class AccumulatedSensors {
-      public static SimpleAccumulatedSensor encoder(int aChannel, int bChannel,
-          double distancePerPulse) {
-        Encoder encoder = new Encoder(aChannel, bChannel);
-        encoder.setDistancePerPulse(distancePerPulse);
-        return SimpleAccumulatedSensor.create(encoder::getDistance, encoder::getRate);
-      }
-    }
-
-
-    public static final class DistanceSensors {
-      public static DistanceSensor digitalUltrasonic(int pingChannel, int echoChannel) {
-        Ultrasonic ultrasonic = new Ultrasonic(pingChannel, echoChannel);
-        ultrasonic.setAutomaticMode(true);
-        return DistanceSensor.create(ultrasonic::getRangeInches);
-      }
-
-      public static DistanceSensor analogUltrasonic(int channel, double voltsToInches) {
-        AnalogInput sensor = new AnalogInput(channel);
-        return DistanceSensor.create(() -> sensor.getVoltage() * voltsToInches);
-      }
-
-      public static DistanceSensor potentiometer(int channel, double fullVoltageRangeToInches) {
-        return potentiometer(channel, fullVoltageRangeToInches, 0.0);
-      }
-
-      public static DistanceSensor potentiometer(int channel, double fullVoltageRangeToInches,
-          double offsetInches) {
-        AnalogPotentiometer pot =
-            new AnalogPotentiometer(channel, fullVoltageRangeToInches, offsetInches);
-        return DistanceSensor.create(pot::get);
-      }
-    }
-
     public static Switch analog(int channel, double lowerVoltage, double upperVoltage,
         AnalogOption option, TriggerMode mode) {
       if (option == null) {
@@ -184,6 +127,64 @@ public class Hardware {
       return mode == TriggerMode.AVERAGED ? trigger::getTriggerState : trigger::getInWindow;
     }
   }
+
+
+  public static final class AngleSensors {
+    // TODO write Gyro component
+
+    public static AngleSensor encoder(int aChannel, int bChannel, double distancePerPulse) {
+      Encoder encoder = new Encoder(aChannel, bChannel);
+      encoder.setDistancePerPulse(distancePerPulse);
+      return AngleSensor.create(encoder::getDistance);
+    }
+
+    public static AngleSensor potentiometer(int channel, double fullVoltageRangeToDegrees) {
+      return potentiometer(channel, fullVoltageRangeToDegrees, 0.0);
+    }
+
+    public static AngleSensor potentiometer(int channel, double fullVoltageRangeToDegrees,
+        double offsetInDegrees) {
+      AnalogPotentiometer pot =
+          new AnalogPotentiometer(channel, fullVoltageRangeToDegrees, offsetInDegrees);
+      return AngleSensor.create(pot::get);
+    }
+  }
+
+
+  public static final class AccumulatedSensors {
+    public static SimpleAccumulatedSensor encoder(int aChannel, int bChannel,
+        double distancePerPulse) {
+      Encoder encoder = new Encoder(aChannel, bChannel);
+      encoder.setDistancePerPulse(distancePerPulse);
+      return SimpleAccumulatedSensor.create(encoder::getDistance, encoder::getRate);
+    }
+  }
+
+
+  public static final class DistanceSensors {
+    public static DistanceSensor digitalUltrasonic(int pingChannel, int echoChannel) {
+      Ultrasonic ultrasonic = new Ultrasonic(pingChannel, echoChannel);
+      ultrasonic.setAutomaticMode(true);
+      return DistanceSensor.create(ultrasonic::getRangeInches);
+    }
+
+    public static DistanceSensor analogUltrasonic(int channel, double voltsToInches) {
+      AnalogInput sensor = new AnalogInput(channel);
+      return DistanceSensor.create(() -> sensor.getVoltage() * voltsToInches);
+    }
+
+    public static DistanceSensor potentiometer(int channel, double fullVoltageRangeToInches) {
+      return potentiometer(channel, fullVoltageRangeToInches, 0.0);
+    }
+
+    public static DistanceSensor potentiometer(int channel, double fullVoltageRangeToInches,
+        double offsetInches) {
+      AnalogPotentiometer pot =
+          new AnalogPotentiometer(channel, fullVoltageRangeToInches, offsetInches);
+      return DistanceSensor.create(pot::get);
+    }
+  }
+
 
 
   public static final class Motors {

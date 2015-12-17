@@ -16,7 +16,7 @@ public class StateFeedbackPlant {
 
   /**
    * Construct a new plant with the given {@link StateFeedbackPlantCoefficients}.
-   * @param coefficients
+   * @param coefficients the state coefficients
    */
   public StateFeedbackPlant(StateFeedbackPlantCoefficients coefficients) {
     this.coefficients = coefficients;

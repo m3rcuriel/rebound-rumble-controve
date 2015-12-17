@@ -1,22 +1,19 @@
 package com.m3rcuriel.controve.api;
 
-import java.util.HashMap;
-import java.util.function.Supplier;
-
 /**
- * @author Lee Mracek
+ * Created by lee on 12/16/15.
  */
-public abstract class Subsystem implements StateHolder {
-  private String name;
-
-  protected HashMap<String, Supplier> states = new HashMap<>();
+public abstract class Subsystem implements Retrievable {
+  protected String name;
 
   public Subsystem(String name) {
     this.name = name;
-    StateManager.add(this);
+    SystemManager.getInstance().add(this);
   }
 
-  public abstract void updateState(StateManager states);
+  public String getName() {
+    return name;
+  }
 
   public abstract void reloadConstants();
 }

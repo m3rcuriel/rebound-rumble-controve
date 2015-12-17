@@ -5,8 +5,8 @@ import edu.wpi.first.wpilibj.util.BoundaryException;
 // TODO add Feedforward
 /**
  * Class implements a PID Control Loop.
- * <p>
- * <p>
+ * <br>
+ * <br>
  * Does all computation synchronously (i.e. the calculate() function must be called by the user from
  * his own thread)
  */
@@ -50,6 +50,7 @@ public class SynchronousPid {
    * called at a constant rate by the user (ex. in a timed thread).
    *
    * @param input the input
+   * @return the calculated output
    */
   public double calculate(double input) {
     previousInput = input;
@@ -221,6 +222,7 @@ public class SynchronousPid {
   /**
    * Return true if the error is within the tolerance.
    *
+   * @param tolerance check if on target within a tolerance
    * @return true if the error is less than the tolerance
    */
   public boolean onTarget(double tolerance) {
