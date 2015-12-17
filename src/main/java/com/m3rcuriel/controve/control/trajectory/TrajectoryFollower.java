@@ -1,7 +1,5 @@
 package com.m3rcuriel.controve.control.trajectory;
 
-import edu.wpi.first.wpilibj.Timer;
-
 // TODO should extend more general Follower or TrajectoryFollower
 
 
@@ -141,7 +139,7 @@ public class TrajectoryFollower {
    *
    * @param position the current position
    * @param velocity the current velocity
-   * @return
+   * @return the calculated necessary speed values
    */
   public double calculate(double position, double velocity) {
     double dt = config.dt;

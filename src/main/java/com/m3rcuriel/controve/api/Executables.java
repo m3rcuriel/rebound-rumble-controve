@@ -1,4 +1,4 @@
-package com.m3rcuriel.controve;
+package com.m3rcuriel.controve.api;
 
 import java.util.Iterator;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -8,10 +8,10 @@ import java.util.concurrent.CopyOnWriteArrayList;
  *
  * @author Lee Mracek
  */
-final class Executables implements Iterable<Executable> {
+public final class Executables implements Iterable<Executable> {
   private final CopyOnWriteArrayList<Executable> executables = new CopyOnWriteArrayList<>();
 
-  Executables() {
+  public Executables() {
   }
 
   /**

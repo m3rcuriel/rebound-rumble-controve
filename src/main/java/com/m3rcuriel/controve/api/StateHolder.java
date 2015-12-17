@@ -1,18 +1,23 @@
 package com.m3rcuriel.controve.api;
 
+import java.util.HashMap;
 import java.util.Set;
-import java.util.function.Supplier;
 
 /**
- * @author Lee Mracek
+ * Created by lee on 12/16/15.
  */
-public interface StateHolder {
+public class StateHolder {
+  private HashMap<String, Object> states = new HashMap<>();
 
-  Supplier get(String key);
+  public void put(String key, Object value) {
+    states.put(key, value);
+  }
 
-  void put(String key, Supplier accessor);
+  public Object get(String key) {
+    return states.get(key);
+  }
 
-  Set<String> keySet();
-
-  String getName();
+  public Set<String> keySet() {
+    return states.keySet();
+  }
 }

@@ -1,4 +1,4 @@
-package com.m3rcuriel.controve;
+package com.m3rcuriel.controve.api;
 
 import com.m3rcuriel.controve.components.Clock;
 import com.m3rcuriel.controve.util.Metronome;
@@ -14,7 +14,7 @@ import java.util.function.LongConsumer;
  * @author Lee Mracek
  */
 
-final class Conductor {
+public final class Conductor {
 
   private final String name;
   private final Clock timeSystem;
@@ -25,7 +25,7 @@ final class Conductor {
   private volatile boolean running = false;
   private volatile CountDownLatch stopped = null;
 
-  Conductor(String name, Iterable<Executable> executables, Clock timeSystem, Metronome metronome,
+  public Conductor(String name, Iterable<Executable> executables, Clock timeSystem, Metronome metronome,
       LongConsumer delayInformer) {
     this.name = name;
     this.timeSystem = timeSystem;
