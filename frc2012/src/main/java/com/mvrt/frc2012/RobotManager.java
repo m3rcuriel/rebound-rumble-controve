@@ -35,11 +35,10 @@ public class RobotManager extends IterativeRobot {
     Logger logger = new Logger();
 
     executables = new Executables();
-    executables.register(logger);
-    metronome = Metronome.metronome((long) (1.0 / ((int) 1000.0 / 30.0)), TimeUnit.MILLISECONDS,
+    metronome = Metronome.metronome((long) (1000.0 / 30.0), TimeUnit.MILLISECONDS,
         Clock.fpgaOrSystem());
     systemConductor = new Conductor("System Conductor", executables, Clock.fpgaOrSystem(), metronome,
-        monitorDelay((long) (1.0 / ((int) 1000.0 / 30.0)), TimeUnit.MILLISECONDS));
+        monitorDelay((long) (1000.0 / 30.0), TimeUnit.MILLISECONDS));
 
     logger.register("Throttle", () -> (short) (robot.operator.throttle.read() * 1000));
     logger.register("Wheel", () -> (short) (robot.operator.wheel.read() * 1000));
@@ -52,6 +51,7 @@ public class RobotManager extends IterativeRobot {
     logger.register("Execution Delays", () -> (int) executorDelayCounter.get());
 
     logger.startup();
+    executables.register(logger);
     systemConductor.start();
 
   }
