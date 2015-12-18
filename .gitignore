@@ -4,3 +4,10 @@
 *.ipr
 
 build/
+
+*.class
+
+.gradle/*
+
+*.csv
+*.log
