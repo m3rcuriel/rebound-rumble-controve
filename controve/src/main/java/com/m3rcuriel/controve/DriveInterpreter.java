@@ -15,7 +15,7 @@ public class DriveInterpreter {
   private double negativeInertiaAccumulator = 0.0;
   private double oldWheel = 0.0;
 
-  private DoubleFunction<Double> limiter = Values.limiter(1.0, -1.0);
+  private DoubleFunction<Double> limiter = Values.limiter(-1.0, 1.0);
 
   public DriveInterpreter(DriveTrain driveTrain) {
     this.driveTrain = driveTrain;

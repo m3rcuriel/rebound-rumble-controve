@@ -100,8 +100,8 @@ public final class Conductor {
             // TODO Add handling
           }
           lastTimeInMillis = timeInMillis;
-          met.pause(); // wait for the loop to complete
         }
+        met.pause(); // wait for the loop to complete
       }
     } finally {
       CountDownLatch latch = stopped;
